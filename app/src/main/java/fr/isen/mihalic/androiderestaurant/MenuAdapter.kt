@@ -1,13 +1,12 @@
 package fr.isen.mihalic.androiderestaurant
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 
-class MenuAdapter(private val menu: Array<MenuItem>) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
+class MenuAdapter(private val menu: List<MenuItem>) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
 
     inner class MenuViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -16,7 +15,6 @@ class MenuAdapter(private val menu: Array<MenuItem>) : RecyclerView.Adapter<Menu
         fun bind(data: MenuItem) {
             menuTextView.text = data.title
             menuTextView.setOnClickListener {  }
-            Log.d(DEBUG_TAG, menuTextView.context.toString());
         }
     }
 

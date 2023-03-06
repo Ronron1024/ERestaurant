@@ -1,4 +1,7 @@
 package fr.isen.mihalic.androiderestaurant
 
-class MenuItem(val title: String) {
-}
+data class MenuItem(
+    val id: Int,
+    val title: String,
+    val description: String = "Lorem ipsum dolor"
+)

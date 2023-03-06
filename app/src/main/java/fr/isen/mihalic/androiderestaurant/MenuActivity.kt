@@ -14,10 +14,10 @@ class MenuActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val currentStage = getStage()
+        MenuProvider.fetchStage(currentStage)
 
         val recyclerView: RecyclerView = binding.menuRecyclerview
-        val data = Array(100) { i -> MenuItem("$currentStage$i") }
-        recyclerView.adapter = MenuAdapter(data)
+        recyclerView.adapter = MenuAdapter(MenuProvider.getMenuFor(currentStage))
     }
 
     private fun getStage() : Stage {
