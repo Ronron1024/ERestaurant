@@ -7,35 +7,35 @@
     tools:context=".HomeActivity">
 
     <Button
-        android:id="@+id/button_entree"
+        android:id="@+id/home_button_entree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:onClick="stageSelection"
-        android:text="@string/button_entree"
+        android:text="@string/home_button_entree"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_meal"
+        android:id="@+id/home_button_meal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:onClick="stageSelection"
-        android:text="@string/button_meal"
+        android:text="@string/home_button_meal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_entree" />
+        app:layout_constraintTop_toBottomOf="@+id/home_button_entree" />
 
     <Button
-        android:id="@+id/button_dessert"
+        android:id="@+id/home_button_dessert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:onClick="stageSelection"
-        android:text="@string/button_dessert"
+        android:text="@string/home_button_dessert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_meal" />
+        app:layout_constraintTop_toBottomOf="@+id/home_button_meal" />
 </androidx.constraintlayout.widget.ConstraintLayout>

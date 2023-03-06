@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">E Restaurant</string>
-    <string name="button_entree">Entree</string>
-    <string name="button_meal">Meal</string>
-    <string name="button_dessert">Dessert</string>
+    <string name="home_button_entree">Entree</string>
+    <string name="home_button_meal">Meal</string>
+    <string name="home_button_dessert">Dessert</string>
+    <string name="button_placeholder">Button</string>
 </resources>
