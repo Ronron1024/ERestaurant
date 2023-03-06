@@ -16,12 +16,7 @@ class MenuActivity : AppCompatActivity() {
         val currentStage = getStage()
 
         val recyclerView: RecyclerView = binding.menuRecyclerview
-        val prefix = when (currentStage) {
-            Stage.ENTREE -> "ENTREE"
-            Stage.MEAL -> "MEAL"
-            Stage.DESSERT -> "DESSERT"
-        }
-        val data = Array(10) {i -> "$prefix$i" }
+        val data = Array(100) { i -> MenuItem("$currentStage$i") }
         recyclerView.adapter = MenuAdapter(data)
     }
 

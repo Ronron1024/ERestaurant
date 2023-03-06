@@ -12,7 +12,15 @@ import fr.isen.mihalic.androiderestaurant.databinding.ActivityHomeBinding
 const val DEBUG_TAG = "RONRON"
 
 const val EXTRA_STAGE = "fr.isen.mihalic.EXTRA_STAGE"
-enum class Stage { ENTREE, MEAL, DESSERT }
+enum class Stage(private val str: String) {
+    ENTREE("ENTREE"),
+    MEAL("MEAL"),
+    DESSERT("DESSERT");
+
+    override fun toString(): String {
+        return str
+    }
+}
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
