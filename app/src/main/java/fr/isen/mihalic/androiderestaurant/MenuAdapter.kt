@@ -14,7 +14,8 @@ class MenuAdapter(private val menu: List<MenuItem>) : RecyclerView.Adapter<MenuA
 
         fun bind(data: MenuItem) {
             menuTextView.text = data.title
-            menuTextView.setOnClickListener {  }
+            //TODO correct way to access activity ?
+            menuTextView.setOnClickListener { (it.context as MenuActivity).getDetailOn(data.id) }
         }
     }
 

@@ -22,5 +22,13 @@ object MenuProvider {
         return menu[stage] ?: listOf()
     }
 
+    operator fun get(index: Int) : MenuItem? {
+        for (list in menu.values) {
+            val filtered = list.filter { it.id == index }
+            if (filtered.isNotEmpty())
+                return filtered[0] // assuming IDs are unique
+        }
+        return null
+    }
 
 }

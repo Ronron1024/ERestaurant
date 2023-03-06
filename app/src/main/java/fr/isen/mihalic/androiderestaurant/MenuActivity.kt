@@ -1,9 +1,12 @@
 package fr.isen.mihalic.androiderestaurant
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.mihalic.androiderestaurant.databinding.ActivityMenuBinding
+
+const val EXTRA_ITEM_ID = "fr.isen.mihalic.EXTRA_ITEM_ID"
 
 class MenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuBinding
@@ -29,5 +32,12 @@ class MenuActivity : AppCompatActivity() {
         }
         //TODO handle error when Stage not found (if necessary)
         return Stage.ENTREE
+    }
+
+    fun getDetailOn(item_id: Int)
+    {
+        val detailIntent = Intent(this, ItemDetailActivity::class.java)
+        detailIntent.putExtra(EXTRA_ITEM_ID, item_id)
+        startActivity(detailIntent)
     }
 }
