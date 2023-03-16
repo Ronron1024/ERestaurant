@@ -10,12 +10,13 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.mihalic.androiderestaurant.activities.DEBUG_TAG
 import fr.isen.mihalic.androiderestaurant.activities.Stage
+import fr.isen.mihalic.androiderestaurant.data.jsonentities.CateringAPIResult
 import org.json.JSONObject
 
 object MenuProvider {
 
-    private const val API_URL = "http://192.168.14.1:3000"
-    //private const val API_URL = "http://test.api.catering.bluecodegames.com/menu"
+    //private const val API_URL = "http://192.168.14.1:3000"
+    private const val API_URL = "http://test.api.catering.bluecodegames.com/menu"
 
     private val gson = Gson()
 
@@ -35,20 +36,42 @@ object MenuProvider {
     private fun fetch(stage: Stage, callback: (List<MenuItem>) -> Unit) {
         menu[stage] = mutableListOf()
 
-        val request = JsonArrayRequest(
+        /*val request = JsonArrayRequest(
             "${API_URL}/${stage}",
             {
-                for (i in 0 until it.length())
-                {
+                for (i in 0 until it.length()) {
                     val item = it.getJSONObject(i)
+                    menu[stage]?.add(gson.fromJson(item.toString(), MenuItem::class.java))
+                }
+                callback(menu[stage] ?: listOf())
+            },
+            {
+                Log.e(DEBUG_TAG, it.toString())
+            }
+        )*/
+
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            API_URL,
+            JSONObject("{\"id_shop\":\"1\"}"),
+            {
+                val apiResult = gson.fromJson(it.toString(), CateringAPIResult::class.java)
+                val category = when (stage) {
+                    Stage.ENTREE -> apiResult.data[0]
+                    Stage.MEAL -> apiResult.data[1]
+                    Stage.DESSERT -> apiResult.data[2]
+                }
+
+                for (item in category.items) {
                     menu[stage]?.add(MenuItem(
-                        item.getString("_id"),
-                        item.getString("title"),
-                        item.getString("description"),
-                        item.getDouble("price"),
-                        item.getString("category")
+                        item.id,
+                        item.name_en,
+                        item.name_en,
+                        item.prices[0].price,
+                        category.name_fr
                     ))
                 }
+
                 callback(menu[stage] ?: listOf())
             },
             {
@@ -56,18 +79,6 @@ object MenuProvider {
             }
         )
 
-        /*val request = JsonObjectRequest(
-            Request.Method.POST,
-            API_URL,
-            JSONObject("{\"id_shop\":\"1\""),
-            {
-
-                callback(menu[stage] ?: listOf())
-            },
-            {
-                Log.e(DEBUG_TAG, it.toString())
-            }
-        )*/
         queue.add(request)
     }
 
