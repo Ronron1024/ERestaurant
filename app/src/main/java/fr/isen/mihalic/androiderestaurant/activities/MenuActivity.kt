@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import fr.isen.mihalic.androiderestaurant.data.MenuAdapter
 import fr.isen.mihalic.androiderestaurant.data.MenuProvider
 import fr.isen.mihalic.androiderestaurant.databinding.ActivityMenuBinding

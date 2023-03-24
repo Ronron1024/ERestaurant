@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.isen.mihalic.androiderestaurant.R
 import fr.isen.mihalic.androiderestaurant.databinding.MenuItemHolderBinding
-
-fun String.nullIfEmpty(): String? {
-    return this.ifEmpty { null }
-}
+import fr.isen.mihalic.androiderestaurant.utils.load
 
 class MenuAdapter(private val menu: MutableList<MenuItem>, val onItemClicked: (String) -> Unit) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
 
@@ -19,10 +16,13 @@ class MenuAdapter(private val menu: MutableList<MenuItem>, val onItemClicked: (S
         private val textviewItemPrice = binding.textviewItemPrice
 
         fun bind(data: MenuItem) {
-            if (data.image.isEmpty())
-                Picasso.get().load(R.drawable.image_not_loaded_24).into(imageviewItemImage)
-            else
-                Picasso.get().load(data.image).into(imageviewItemImage)
+            //TODO Picasso not loading image code HTTP 504
+            //Picasso.get().isLoggingEnabled = true
+            //TODO use fit
+            Picasso.get().load(
+                data.image.ifEmpty { null } ?: R.drawable.image_not_loaded
+            ).error(R.drawable.image_not_loaded).into(imageviewItemImage)
+
             textviewItemTitle.text = data.title
             textviewItemPrice.text = data.price.toString()
 
