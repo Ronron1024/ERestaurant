@@ -20,13 +20,13 @@ class MenuAdapter(private val menu: MutableList<MenuItem>, val onItemClicked: (S
             //Picasso.get().isLoggingEnabled = true
             //TODO use fit
             Picasso.get().load(
-                data.image.ifEmpty { null } ?: R.drawable.image_not_loaded
+                data.images[0].ifEmpty { null } ?: R.drawable.image_not_loaded
             ).error(R.drawable.image_not_loaded).into(imageviewItemImage)
 
             textviewItemTitle.text = data.title
             textviewItemPrice.text = data.price.toString()
 
-            textviewItemTitle.setOnClickListener {
+            itemView.setOnClickListener {
                 onItemClicked(data.id)
             }
         }

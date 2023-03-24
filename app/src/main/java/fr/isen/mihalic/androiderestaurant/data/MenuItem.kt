@@ -5,7 +5,7 @@ data class MenuItem(
     val title: String,
     val description: String,
     val price: Double,
-    val image: String,
+    val images: List<String>,
     val category: String
 ) {
     val id: String get() = _id

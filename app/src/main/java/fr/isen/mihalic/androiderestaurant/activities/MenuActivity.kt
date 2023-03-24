@@ -11,6 +11,7 @@ import fr.isen.mihalic.androiderestaurant.databinding.ActivityMenuBinding
 
 const val EXTRA_ITEM_ID = "fr.isen.mihalic.EXTRA_ITEM_ID"
 
+//TODO Caching and pull to refresh
 class MenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuBinding
 
