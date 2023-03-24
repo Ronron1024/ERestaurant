@@ -68,6 +68,7 @@ object MenuProvider {
                         item.name_en,
                         item.name_en,
                         item.prices[0].price,
+                        item.images[0],
                         category.name_fr
                     ))
                 }
