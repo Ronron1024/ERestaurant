@@ -11,3 +11,6 @@ fun Picasso.load(resource: Any?): RequestCreator {
     else
         this.load(resource as String?)
 }
+
+// https://stackoverflow.com/questions/64868186/increment-an-integer-map-value-in-kotlin
+operator fun Int?.plus(other: Int) = this?.plus(other) ?: other

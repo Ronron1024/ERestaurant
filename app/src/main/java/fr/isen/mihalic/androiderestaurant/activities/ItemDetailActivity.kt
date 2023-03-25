@@ -2,9 +2,13 @@ package fr.isen.mihalic.androiderestaurant.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.material.behavior.SwipeDismissBehavior
+import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
+import com.google.android.material.snackbar.Snackbar
 import fr.isen.mihalic.androiderestaurant.R
 import fr.isen.mihalic.androiderestaurant.data.MenuProvider
 import fr.isen.mihalic.androiderestaurant.data.CarouselAdapter
+import fr.isen.mihalic.androiderestaurant.data.Cart
 import fr.isen.mihalic.androiderestaurant.data.MenuItem
 import fr.isen.mihalic.androiderestaurant.databinding.ActivityItemDetailBinding
 
@@ -38,6 +42,10 @@ class ItemDetailActivity : AppCompatActivity() {
         binding.detailButtonPlus.setOnClickListener {
             addItem(1)
         }
+
+        binding.detailButtonAdd.setOnClickListener {
+            Snackbar.make(it, R.string.added_to_cart_info, Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     //TODO Separate data from view
@@ -48,6 +56,7 @@ class ItemDetailActivity : AppCompatActivity() {
 
         quantity += amount
         totalPrice = quantity * (item?.price ?: 0.0)
+        item?.let { Cart.addItem(this, it, amount) }
         updateValues()
     }
 

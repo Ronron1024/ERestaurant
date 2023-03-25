@@ -9,4 +9,5 @@
     <string name="detail_default_quantity">1</string>
     <string name="detail_button_plus">+</string>
     <string name="detail_button_add_to_cart_default_value">Total $%s</string>
+    <string name="added_to_cart_info">Added to cart !</string>
 </resources>
