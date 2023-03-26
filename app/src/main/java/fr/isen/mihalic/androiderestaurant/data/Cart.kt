@@ -16,7 +16,12 @@ object Cart {
         saveCart(context)
     }
 
+    fun itemCount(): Int {
+        return items.values.sum()
+    }
+
     private fun saveCart(context: Context) {
+        //TODO async writing ?
         val file = File(context.filesDir, CART_STORAGE_PATH)
         file.writeText(gson.toJson(items))
     }

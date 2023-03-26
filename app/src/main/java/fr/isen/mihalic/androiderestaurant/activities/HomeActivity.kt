@@ -3,6 +3,9 @@ package fr.isen.mihalic.androiderestaurant.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import fr.isen.mihalic.androiderestaurant.R
 import fr.isen.mihalic.androiderestaurant.databinding.ActivityHomeBinding
 
 const val DEBUG_TAG = "RONRON"
@@ -26,6 +29,17 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.materialToolbar)
+        binding.materialToolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_cart -> {
+                    Log.d(DEBUG_TAG, "cart clicked !")
+                    true
+                }
+                else -> false
+            }
+        }
+
         binding.homeButtonEntree.setOnClickListener {
             openMenu(Stage.ENTREE)
         }
@@ -39,10 +53,17 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.top_bar, menu)
+        return true
+    }
+
     private fun openMenu(stage: Stage)
     {
         val menuIntent = Intent(this, MenuActivity::class.java)
         menuIntent.putExtra(EXTRA_STAGE, stage.ordinal)
         startActivity(menuIntent)
     }
+
+
 }

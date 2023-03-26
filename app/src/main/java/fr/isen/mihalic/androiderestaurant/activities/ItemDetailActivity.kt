@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
+import com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback
 import com.google.android.material.snackbar.Snackbar
 import fr.isen.mihalic.androiderestaurant.R
 import fr.isen.mihalic.androiderestaurant.data.MenuProvider
@@ -11,6 +12,7 @@ import fr.isen.mihalic.androiderestaurant.data.CarouselAdapter
 import fr.isen.mihalic.androiderestaurant.data.Cart
 import fr.isen.mihalic.androiderestaurant.data.MenuItem
 import fr.isen.mihalic.androiderestaurant.databinding.ActivityItemDetailBinding
+import fr.isen.mihalic.androiderestaurant.utils.SnackbarCallback
 
 class ItemDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityItemDetailBinding
@@ -44,7 +46,12 @@ class ItemDetailActivity : AppCompatActivity() {
         }
 
         binding.detailButtonAdd.setOnClickListener {
-            Snackbar.make(it, R.string.added_to_cart_info, Snackbar.LENGTH_SHORT).show()
+            item?.let { Cart.addItem(this, it, quantity) }
+            val snackbar = Snackbar.make(it, "Item(s) in cart : ${Cart.itemCount()}", Snackbar.LENGTH_SHORT)
+            snackbar.addCallback(SnackbarCallback { _, _ ->
+                finish()
+            })
+            snackbar.show()
         }
     }
 
@@ -56,7 +63,6 @@ class ItemDetailActivity : AppCompatActivity() {
 
         quantity += amount
         totalPrice = quantity * (item?.price ?: 0.0)
-        item?.let { Cart.addItem(this, it, amount) }
         updateValues()
     }
 
