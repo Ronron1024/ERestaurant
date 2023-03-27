@@ -3,8 +3,11 @@ package fr.isen.mihalic.androiderestaurant.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import fr.isen.mihalic.androiderestaurant.R
+import fr.isen.mihalic.androiderestaurant.data.Cart
 import fr.isen.mihalic.androiderestaurant.data.MenuAdapter
 import fr.isen.mihalic.androiderestaurant.data.MenuProvider
 import fr.isen.mihalic.androiderestaurant.databinding.ActivityMenuBinding
@@ -12,13 +15,15 @@ import fr.isen.mihalic.androiderestaurant.databinding.ActivityMenuBinding
 const val EXTRA_ITEM_ID = "fr.isen.mihalic.EXTRA_ITEM_ID"
 
 //TODO Caching and pull to refresh
-class MenuActivity : AppCompatActivity() {
+class MenuActivity : BaseActivity() {
     private lateinit var binding: ActivityMenuBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTopBar(binding.menuTopBar.materialToolbar)
 
         val recyclerView: RecyclerView = binding.menuRecyclerview
         recyclerView.adapter = MenuAdapter(mutableListOf(), ::getDetailOn)

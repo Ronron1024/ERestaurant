@@ -2,6 +2,7 @@ package fr.isen.mihalic.androiderestaurant.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 import com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback
@@ -12,9 +13,8 @@ import fr.isen.mihalic.androiderestaurant.data.CarouselAdapter
 import fr.isen.mihalic.androiderestaurant.data.Cart
 import fr.isen.mihalic.androiderestaurant.data.MenuItem
 import fr.isen.mihalic.androiderestaurant.databinding.ActivityItemDetailBinding
-import fr.isen.mihalic.androiderestaurant.utils.SnackbarCallback
 
-class ItemDetailActivity : AppCompatActivity() {
+class ItemDetailActivity : BaseActivity() {
     private lateinit var binding: ActivityItemDetailBinding
 
     private var item: MenuItem? = null
@@ -27,6 +27,7 @@ class ItemDetailActivity : AppCompatActivity() {
 
         binding = ActivityItemDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTopBar(binding.detailTopBar.materialToolbar)
 
         val itemID = intent.getStringExtra(EXTRA_ITEM_ID).toString()
         item = MenuProvider[itemID]
@@ -47,11 +48,7 @@ class ItemDetailActivity : AppCompatActivity() {
 
         binding.detailButtonAdd.setOnClickListener {
             item?.let { Cart.addItem(this, it, quantity) }
-            val snackbar = Snackbar.make(it, "Item(s) in cart : ${Cart.itemCount()}", Snackbar.LENGTH_SHORT)
-            snackbar.addCallback(SnackbarCallback { _, _ ->
-                finish()
-            })
-            snackbar.show()
+            invalidateOptionsMenu()
         }
     }
 

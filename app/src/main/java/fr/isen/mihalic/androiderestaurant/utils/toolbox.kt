@@ -1,9 +1,17 @@
 package fr.isen.mihalic.androiderestaurant.utils
 
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.RequestCreator
+import fr.isen.mihalic.androiderestaurant.R
+import fr.isen.mihalic.androiderestaurant.data.Cart
+import fr.isen.mihalic.androiderestaurant.databinding.CartIconBinding
 
 fun Picasso.load(resource: Any?): RequestCreator {
     return if (resource is String)
@@ -17,15 +25,5 @@ fun Picasso.load(resource: Any?): RequestCreator {
 // https://stackoverflow.com/questions/64868186/increment-an-integer-map-value-in-kotlin
 operator fun Int?.plus(other: Int) = this?.plus(other) ?: other
 
-class SnackbarCallback(
-    private val dismissedAction: (Snackbar?, Int) -> Unit
-) : BaseCallback<Snackbar>() {
-    override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-        super.onDismissed(transientBottomBar, event)
-        dismissedAction(transientBottomBar, event)
-    }
-
-    override fun onShown(transientBottomBar: Snackbar?) {
-        super.onShown(transientBottomBar)
-    }
-}
+// https://stackoverflow.com/questions/33381384/how-to-use-typetoken-generics-with-gson-in-kotlin
+inline fun <reified T> Gson.fromJson(json: String) = fromJson<T>(json, object: TypeToken<T>() {}.type)

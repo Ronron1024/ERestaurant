@@ -5,6 +5,7 @@
     <string name="home_button_dessert">Dessert</string>
     <string name="button_placeholder">Button</string>
     <string name="item_image_description">Item image</string>
+    <string name="cart_icon_description">Cart image</string>
     <string name="detail_button_minus">-</string>
     <string name="detail_default_quantity">1</string>
     <string name="detail_button_plus">+</string>
