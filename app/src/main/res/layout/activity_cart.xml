@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MenuActivity">
+    tools:context=".activities.CartActivity">
 
-    <include android:id="@+id/menu_top_bar" layout="@layout/top_bar" />
+    <include android:id="@+id/cart_top_bar" layout="@layout/top_bar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/menu_recyclerview"
+        android:id="@+id/cart_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_top_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/cart_top_bar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

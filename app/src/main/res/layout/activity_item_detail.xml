@@ -6,12 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.ItemDetailActivity">
 
-    <include
-        android:id="@+id/detail_top_bar"
-        layout="@layout/top_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include android:id="@+id/detail_top_bar" layout="@layout/top_bar" />
 
     <TextView
         android:id="@+id/detail_item_title"

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.ERestaurant"
         tools:targetApi="31">
         <activity
-            android:name=".CartActivity"
+            android:name=".activities.CartActivity"
             android:exported="false" />
         <activity
             android:name=".activities.ItemDetailActivity"

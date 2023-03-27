@@ -30,7 +30,7 @@ object Cart {
         file.writeText(gson.toJson(items))
     }
 
-    private fun getCart(context: Context): Map<String, Int> {
+    fun getCart(context: Context): Map<String, Int> {
         items.clear()
 
         try {

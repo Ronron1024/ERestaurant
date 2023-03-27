@@ -1,5 +1,6 @@
 package fr.isen.mihalic.androiderestaurant.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -16,15 +17,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun setTopBar(topBar: MaterialToolbar) {
         setSupportActionBar(topBar)
-        topBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_cart -> {
-                    Log.d(DEBUG_TAG, "cart clicked !")
-                    true
-                }
-                else -> false
-            }
-        }
+    }
+
+    fun openCart() {
+        startActivity(Intent(this, CartActivity::class.java))
     }
 
     override fun onResume() {
@@ -34,6 +30,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.top_bar, menu)
+
+        menu.findItem(R.id.action_cart).actionView?.setOnClickListener {
+            openCart()
+        }
+
         return true
     }
 
