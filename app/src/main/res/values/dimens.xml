@@ -9,4 +9,6 @@
     <item name="menu_item_title_text_size" type="dimen">20sp</item>
     <item name="menu_item_price_text_size" type="dimen">16sp</item>
     <item name="menu_item_image_size" type="dimen">275dp</item>
+    <item name="menu_item_image_size_large" type="dimen">300dp</item>
+    <item name="button_quantities_size" type="dimen">48dp</item>
 </resources>
