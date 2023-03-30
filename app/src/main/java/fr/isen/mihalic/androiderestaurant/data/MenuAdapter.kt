@@ -26,7 +26,8 @@ class MenuAdapter(private val menu: MutableList<MenuItem>, val onItemClicked: (S
             ).error(R.drawable.image_not_loaded).into(imageviewItemImage)
 
             textviewItemTitle.text = data.title
-            textviewItemPrice.text = data.price.toString()
+            //TODO how can I access res without ctx ???
+            textviewItemPrice.text = "\$ ${data.price.toString()}"
 
             itemView.setOnClickListener {
                 onItemClicked(data.id)

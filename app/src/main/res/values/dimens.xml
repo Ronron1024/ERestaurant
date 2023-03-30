@@ -4,4 +4,9 @@
     <item name="category_button_width" type="dimen">275dp</item>
     <item name="category_button_height" type="dimen">100dp</item>
     <item name="category_button_text_size" type="dimen">34sp</item>
+    <item name="card_spacing_horizontal" type="dimen">16dp</item>
+    <item name="card_spacing_vertical" type="dimen">16dp</item>
+    <item name="menu_item_title_text_size" type="dimen">20sp</item>
+    <item name="menu_item_price_text_size" type="dimen">16sp</item>
+    <item name="menu_item_image_size" type="dimen">275dp</item>
 </resources>
