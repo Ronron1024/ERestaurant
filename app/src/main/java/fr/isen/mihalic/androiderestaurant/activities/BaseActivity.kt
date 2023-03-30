@@ -20,7 +20,7 @@ abstract class BaseActivity : AppCompatActivity() {
         setSupportActionBar(topBar)
     }
 
-    fun openCart() {
+    open fun openCart() {
         startActivity(Intent(this, CartActivity::class.java))
     }
 

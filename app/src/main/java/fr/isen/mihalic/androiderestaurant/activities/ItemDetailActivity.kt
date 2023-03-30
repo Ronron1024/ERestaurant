@@ -1,5 +1,6 @@
 package fr.isen.mihalic.androiderestaurant.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -67,5 +68,11 @@ class ItemDetailActivity : BaseActivity() {
         binding.detailQuantity.text = quantity.toString()
         // Cast totalPrice to string in order to get adapted precision
         binding.detailButtonAdd.text = getString(R.string.detail_button_add_to_cart_default_value, totalPrice.toString())
+    }
+
+    //TODO use navigation graph ?
+    override fun openCart() {
+        startActivity(Intent(this, CartActivity::class.java))
+        finish()
     }
 }
