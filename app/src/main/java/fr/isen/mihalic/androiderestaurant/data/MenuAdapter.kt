@@ -8,7 +8,9 @@ import fr.isen.mihalic.androiderestaurant.R
 import fr.isen.mihalic.androiderestaurant.databinding.MenuItemHolderBinding
 import fr.isen.mihalic.androiderestaurant.utils.load
 
-class MenuAdapter(private val menu: MutableList<MenuItem>, val onItemClicked: (String) -> Unit) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
+//TODO Generic adapter ?
+class MenuAdapter(private val menu: MutableList<MenuItem>, val onItemClicked: (String) -> Unit)
+    : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
 
     inner class MenuViewHolder(binding: MenuItemHolderBinding) : RecyclerView.ViewHolder(binding.root) {
         private val imageviewItemImage = binding.imageviewItemImage

@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.widget.Toast
 import fr.isen.mihalic.androiderestaurant.R
-import fr.isen.mihalic.androiderestaurant.data.Cart
-import fr.isen.mihalic.androiderestaurant.data.MenuAdapter
-import fr.isen.mihalic.androiderestaurant.data.MenuItem
-import fr.isen.mihalic.androiderestaurant.data.MenuProvider
+import fr.isen.mihalic.androiderestaurant.data.*
 import fr.isen.mihalic.androiderestaurant.databinding.ActivityCartBinding
 
 class CartActivity : BaseActivity() {
@@ -21,17 +19,29 @@ class CartActivity : BaseActivity() {
         setContentView(binding.root)
         setTopBar(binding.cartTopBar.materialToolbar)
 
-        val items = mutableListOf<MenuItem>()
+        val items = mutableListOf<Pair<MenuItem, Int>>()
         for (item in Cart.getCart(this)) {
-            MenuProvider[item.key]?.let { items.add(it) }
+            MenuProvider[item.key]?.let { items.add(it to item.value) }
         }
 
         val recyclerView = binding.cartRecyclerview
-        recyclerView.adapter = MenuAdapter(items) {
-            Log.d(DEBUG_TAG, it)
+        recyclerView.adapter = CartAdapter(items) {
+            Cart.removeItem(this, it.first)
+            (recyclerView.adapter as CartAdapter).removeItem(it)
+            invalidateOptionsMenu()
+
+            if (Cart.itemCount(this) <= 0)
+                finish()
+        }
+
+        binding.buttonOrder.setOnClickListener {
+            Cart.clear(this)
+            Toast.makeText(this, "Ordered !", Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 
+    // Prevent loop on CartActivity
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.top_bar, menu)
         return true

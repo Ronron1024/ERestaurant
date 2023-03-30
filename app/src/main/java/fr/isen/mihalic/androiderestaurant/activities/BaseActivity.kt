@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.appbar.MaterialToolbar
 import fr.isen.mihalic.androiderestaurant.R
@@ -32,7 +33,10 @@ abstract class BaseActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.top_bar, menu)
 
         menu.findItem(R.id.action_cart).actionView?.setOnClickListener {
-            openCart()
+            if (Cart.itemCount(this) > 0)
+                openCart()
+            else
+                Toast.makeText(this, "No item in cart !", Toast.LENGTH_SHORT).show()
         }
 
         return true

@@ -20,6 +20,17 @@ object Cart {
         saveCart(context)
     }
 
+    fun removeItem(context: Context, item: MenuItem)
+    {
+        items.remove(item.id)
+        saveCart(context)
+    }
+
+    fun clear(context: Context) {
+        items.clear()
+        saveCart(context)
+    }
+
     fun itemCount(context: Context): Int {
         return getCart(context).values.sum()
     }

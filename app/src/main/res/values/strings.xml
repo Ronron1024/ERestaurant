@@ -12,4 +12,6 @@
     <string name="detail_button_add_to_cart_default_value">Total $%s</string>
     <string name="added_to_cart_info">Added to cart !</string>
     <string name="action_cart">cart</string>
+    <string name="button_delete_text">Remove</string>
+    <string name="button_order">Order !</string>
 </resources>
