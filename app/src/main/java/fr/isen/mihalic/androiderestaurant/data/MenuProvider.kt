@@ -23,17 +23,17 @@ object MenuProvider {
     private var menu: MutableMap<Stage, MutableList<MenuItem>> = mutableMapOf()
     private lateinit var queue: RequestQueue
 
-    fun fetchStage(stage: Stage, context: Context, callback: (List<MenuItem>) -> Unit) {
+    fun fetchStage(stage: Stage, context: Context, callback: ((List<MenuItem>) -> Unit)? = null) {
         if (!MenuProvider::queue.isInitialized)
             queue = Volley.newRequestQueue(context)
 
         if (menu[stage] == null)
             fetch(stage, callback)
         else
-            callback(menu[stage] ?: listOf())
+            callback?.invoke(menu[stage] ?: listOf())
     }
 
-    private fun fetch(stage: Stage, callback: (List<MenuItem>) -> Unit) {
+    private fun fetch(stage: Stage, callback: ((List<MenuItem>) -> Unit)? = null) {
         menu[stage] = mutableListOf()
 
         /*val request = JsonArrayRequest(
@@ -73,7 +73,7 @@ object MenuProvider {
                     ))
                 }
 
-                callback(menu[stage] ?: listOf())
+                callback?.invoke((menu[stage] ?: listOf()))
             },
             {
                 Log.e(DEBUG_TAG, it.toString())

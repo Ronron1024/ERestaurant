@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.View
 import fr.isen.mihalic.androiderestaurant.R
 import fr.isen.mihalic.androiderestaurant.data.Cart
+import fr.isen.mihalic.androiderestaurant.data.MenuProvider
 import fr.isen.mihalic.androiderestaurant.databinding.ActivityHomeBinding
 import fr.isen.mihalic.androiderestaurant.databinding.CartIconBinding
 
@@ -29,6 +30,10 @@ class HomeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Init menu with network
+        for (stage in Stage.values())
+            MenuProvider.fetchStage(stage, this)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
