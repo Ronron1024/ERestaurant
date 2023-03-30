@@ -6,34 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".activities.HomeActivity">
 
-    <include android:id="@+id/home_top_bar" layout="@layout/top_bar" />
+    <include
+        android:id="@+id/home_top_bar"
+        layout="@layout/top_bar" />
 
     <Button
         android:id="@+id/home_button_entree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="@dimen/category_button_width"
+        android:layout_height="@dimen/category_button_height"
         android:text="@string/home_button_entree"
+        android:textSize="@dimen/category_button_text_size"
+        app:icon="@drawable/entree_48px"
+        app:iconSize="@dimen/category_icon_size"
+        app:layout_constraintBottom_toTopOf="@+id/home_button_meal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_top_bar" />
 
     <Button
         android:id="@+id/home_button_meal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="@dimen/category_button_width"
+        android:layout_height="@dimen/category_button_height"
         android:text="@string/home_button_meal"
+        android:textSize="@dimen/category_button_text_size"
+        app:icon="@drawable/meal_48px"
+        app:iconSize="@dimen/category_icon_size"
+        app:layout_constraintBottom_toTopOf="@+id/home_button_dessert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_button_entree" />
 
     <Button
         android:id="@+id/home_button_dessert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="@dimen/category_button_width"
+        android:layout_height="@dimen/category_button_height"
         android:text="@string/home_button_dessert"
+        android:textSize="@dimen/category_button_text_size"
+        app:icon="@drawable/icecream_48px"
+        app:iconSize="@dimen/category_icon_size"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_button_meal" />
