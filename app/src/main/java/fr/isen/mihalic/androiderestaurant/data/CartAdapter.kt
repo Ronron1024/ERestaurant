@@ -23,8 +23,8 @@ class CartAdapter(private val items: MutableList<Pair<MenuItem, Int>>, val onIte
                 menuItem?.images?.get(0)?.ifEmpty { null } ?: R.drawable.image_not_loaded
             ).error(R.drawable.image_not_loaded).into(imageviewItemImage)
 
-            textviewItemTitle.text = menuItem?.title
-            textviewItemAmount.text = data.second.toString()
+            textviewItemTitle.text = "${data.second.toString()}x ${menuItem?.title}"
+            textviewItemAmount.text = "\$ ${(menuItem?.price ?: 0.0) * data.second}"
 
             buttonDelete.setOnClickListener {
                 onItemClicked(data)
@@ -44,7 +44,12 @@ class CartAdapter(private val items: MutableList<Pair<MenuItem, Int>>, val onIte
     }
 
     fun removeItem(item: Pair<MenuItem, Int>) {
+        val index = items.indexOf(item)
         items.remove(item)
-        notifyItemRemoved(items.indexOf(item))
+        notifyItemRemoved(index)
+    }
+
+    fun getItems(): List<Pair<MenuItem, Int>> {
+        return items
     }
 }

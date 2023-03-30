@@ -28,12 +28,14 @@ class CartActivity : BaseActivity() {
         recyclerView.adapter = CartAdapter(items) {
             Cart.removeItem(this, it.first)
             (recyclerView.adapter as CartAdapter).removeItem(it)
+            updateTotalPrice()
             invalidateOptionsMenu()
 
             if (Cart.itemCount(this) <= 0)
                 finish()
         }
 
+        updateTotalPrice()
         binding.buttonOrder.setOnClickListener {
             Cart.clear(this)
             Toast.makeText(this, "Ordered !", Toast.LENGTH_SHORT).show()
@@ -45,5 +47,18 @@ class CartActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.top_bar, menu)
         return true
+    }
+
+    private fun updateTotalPrice() {
+        val totalPrice = (binding.cartRecyclerview.adapter as CartAdapter)
+            .getItems()
+            .sumOf {
+                it.first.price * it.second
+            }
+
+        binding.buttonOrder.text = getString(
+            R.string.button_order,
+            totalPrice.toString()
+        )
     }
 }
