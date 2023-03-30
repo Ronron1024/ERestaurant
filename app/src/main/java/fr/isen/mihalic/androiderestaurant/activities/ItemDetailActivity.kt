@@ -15,7 +15,10 @@ import fr.isen.mihalic.androiderestaurant.data.Cart
 import fr.isen.mihalic.androiderestaurant.data.MenuItem
 import fr.isen.mihalic.androiderestaurant.databinding.ActivityItemDetailBinding
 
+const val STATE_QUANTITY = "fr.isen.mihalic.QUANTITY"
+
 class ItemDetailActivity : BaseActivity() {
+
     private lateinit var binding: ActivityItemDetailBinding
 
     private var item: MenuItem? = null
@@ -26,6 +29,8 @@ class ItemDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val savedQuantity = savedInstanceState?.getInt(STATE_QUANTITY) ?: 0
+
         binding = ActivityItemDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTopBar(binding.detailTopBar.materialToolbar)
@@ -34,7 +39,11 @@ class ItemDetailActivity : BaseActivity() {
         item = MenuProvider[itemID]
 
         // Initial item
-        addItem(1)
+        if (savedQuantity == 0)
+            addItem(1)
+        else
+            addItem(savedQuantity)
+
 
         binding.pager.adapter = CarouselAdapter(item?.images ?: listOf())
 
@@ -51,6 +60,11 @@ class ItemDetailActivity : BaseActivity() {
             item?.let { Cart.addItem(this, it, quantity) }
             invalidateOptionsMenu()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(STATE_QUANTITY, quantity)
+        super.onSaveInstanceState(outState)
     }
 
     //TODO Separate data from view
